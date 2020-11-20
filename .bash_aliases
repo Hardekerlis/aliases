@@ -25,7 +25,12 @@ function rebaseBranch {
 	echo `Rebased ${branchToRebase} into master`;
 }
 
+#Kubectl
 alias k="kubectl"
+alias kga="k get all --all-namespaces"
+alias kgan="k get all -n"
+
+#Git
 alias gc="git checkout"
 alias gcm="git checkout master"
 alias gcb="git checkout -b"
