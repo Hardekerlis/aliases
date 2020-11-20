@@ -27,8 +27,12 @@ function rebaseBranch {
 
 #Kubectl
 alias k="kubectl"
-alias kga="k get all --all-namespaces"
-alias kgan="k get all -n"
+alias kga="k get all"
+alias kgaa="kga --all-namespaces"
+alias kgan="kga -n"
+alias kd="k describe"
+alias kdp="kd pod"
+alias kds="kd service"
 
 #Git
 alias gc="git checkout"
