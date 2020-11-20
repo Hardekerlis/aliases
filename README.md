@@ -1,7 +1,7 @@
 #Kubectl
 ```bash
 alias k="kubectl"
-alias kga="k get all --all-namespaces"
+alias kgaa="k get all --all-namespaces"
 alias kgan="k get all -n"
 ```
 
