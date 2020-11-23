@@ -19,10 +19,10 @@ function rebaseBranch {
 		return;
 	fi
 
-	git checkout $branchToRebase;
-	git rebase master;
-	git checkout master;
-	git branch -d branchToRebase;
+	"git checkout $branchToRebase";
+	"git rebase master";
+	"git checkout master";
+	"git branch -d branchToRebase";
 	echo `Rebased $branchToRebase into master`;
 }
 
