@@ -1,8 +1,9 @@
 Pull this repo at your home folder. To get to the root folder do **'cd ~'**
 
-make sure to to add this line at the bottom in your .bashrc file in fedora:
+make sure to to add these line at the bottom in your .bashrc file in fedora:
 ```bash
 source "$HOME/aliases/.bash_aliases"
+source "$HOME/aliases/.bash_env"
 ```
 
 ### Kubectl
@@ -32,4 +33,10 @@ alias grbforce="git branch -D"
 ### Only for development
 ```bash
 alias quickpush="git add . && git commit -am 'Not important' && git push"
+```
+
+### Project management
+```bash
+alias confProj="setProject"
+alias openProj="openProject"
 ```

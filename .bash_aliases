@@ -1,3 +1,13 @@
+red=`tput setaf 1`
+green=`tput setaf 2`
+yellow=`tput setaf 3`
+blue=`tput setaf 4`
+magenta=`tput setaf 5`
+cyan=`tput setaf 6`
+white=`tput setaf 7`
+
+reset=`tput sgr0`
+
 function rebaseBranch {
 	local BRANCH=`git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/\1/'`;
 
@@ -13,7 +23,7 @@ function rebaseBranch {
 	branchToRebase="$1";
 
 	local rebaseExists=$(git branch --list ${branchToRebase}) # Check if the branch to rebase exists
-	echo $rebaseExists
+	echo "$rebaseExists does this work"
 	if [[ -z ${rebaseExists} ]]; then
 		echo "The branch ${branchToRebase} doesn't exist";
 		return;
@@ -22,7 +32,7 @@ function rebaseBranch {
 	git checkout $branchToRebase;
 	git rebase master;
 	git checkout master;
-	git branch -d branchToRebase;
+	git branch -d $branchToRebase;
 	echo Rebased $branchToRebase into master;
 }
 
@@ -46,3 +56,128 @@ alias grbforce="git branch -D"
 
 # Only for development
 alias quickpush="git add . && git commit -am 'Not important' && git push"
+
+
+function quickSource {
+	source ~/.bashrc
+	wait
+	echo ""
+	echo "${green}Ran: ${magenta}source ~/.bashrc${reset}";
+	echo ""
+}
+# Quick source
+alias srcBash="quickSource"
+
+function changeProjectConfig {
+	read -p "Enter path to project folder (where all your projects are stored), base path is $HOME/" userPath
+	PROJECT_BASE_PATH="$HOME/$userPath/";
+	ACTIVE_PROJ_CONF="true";
+
+	echo "export PROJECT_BASE_PATH='$PROJECT_BASE_PATH';" > "$HOME/aliases/.bash_env"
+	echo "export ACTIVE_PROJ_CONF='$ACTIVE_PROJ_CONF';" >> "$HOME/aliases/.bash_env"
+	wait
+}
+
+function setProject {
+
+	while [[ true ]]; do
+
+		# echo $ACTIVE_PROJ_CONF;
+		# ACTIVE_PROJ_CONF=""
+		# echo "Project folder path: $PROJECT_BASE_PATH"
+		# echo ""
+
+
+		if [[ $ACTIVE_PROJ_CONF == true ]]; then
+			echo "";
+			echo "${cyan}Active configuration: ${reset}";
+			echo "${green}Base project folder path:${reset} $PROJECT_BASE_PATH"
+			echo "";
+			echo "${green}Project folder name:${reset} $PROJECT_FOLDER"
+			echo ""
+
+			read -p "Would you like to change base settings for the project configuration [y/n]: " option;
+
+			optionFormatted=$(echo "$option" | tr '[:upper:]' '[:lower:]');
+
+			if [[ $optionFormatted == "y" ]] || [[ $optionFormatted == "yes" ]]; then
+				changeProjectConfig
+				break;
+				wait
+			elif [[ $optionFormatted == "n" ]] || [[ $optionFormatted == "no" ]]; then
+				break;
+			else
+				echo "Please supply [y/n]";
+			fi
+		else
+			changeProjectConfig
+			wait
+			break;
+		fi
+	done
+
+	echo "${green}Base project folder path:${reset} $PROJECT_BASE_PATH"
+	folderArr=();
+
+	while [[ true ]]; do
+		if [[ "${PROJECT_BASE_PATH}" ]]; then
+			echo "You have the following projects in $PROJECT_BASE_PATH":
+			incr=0;
+			for path in $PROJECT_BASE_PATH*; do
+
+				if [[ ${path#$PROJECT_BASE_PATH} == "*" ]]; then
+					echo "${red}You have no folders in ${magenta}$PROJECT_BASE_PATH${reset}"
+					echo "Create some projects and run this again"
+					echo "" > "$HOME/aliases/.bash_env"
+					ACTIVE_PROJ_CONF="";
+					PROJECT_BASE_PATH="";
+					return;
+				fi
+
+				projectFolder=${path#$PROJECT_BASE_PATH};
+				echo "[$incr]: $projectFolder";
+				folderArr[incr]=$projectFolder;
+				incr=$(($incr+1));
+
+			done
+			# "$var" -eq "$var"
+			while [[ true ]]; do
+				read -p "Enter the number of the project you want to set: " number
+				# echo "$number" -eq "$number"
+				if [ "$number" -eq "$number" ] 2>/dev/null && [[ $number -lt $((${#folderArr[@]}-1)) || $number == $((${#folderArr[@]}-1)) ]]; then
+
+					folder=${folderArr[number]};
+					IFS=$'\n' read -d '' -r -a bashEnvs < $HOME/aliases/.bash_env
+
+					if [[ $((${#bashEnvs[@]}-1)) == "2" ]]; then
+						sed -i '$ d' "$HOME/aliases/.bash_env"
+					fi
+					echo "export PROJECT_FOLDER='$folder';" >> "$HOME/aliases/.bash_env"
+
+					wait
+
+
+
+					source "$HOME/.bash_profile";
+					break;
+				else
+				  echo "Please enter a number in the array"
+				fi
+			done
+		fi
+		break;
+	done
+}
+
+# Project setup
+alias confProj="setProject"
+
+function openProject {
+	if [[ -z $PROJECT_BASE_PATH ]] && [[ -z $PROJECT_FOLDER ]]; then
+		confProj
+	fi
+	cd "$PROJECT_BASE_PATH/$PROJECT_FOLDER";
+	atom .
+}
+
+alias openProj="openProject"
