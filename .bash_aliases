@@ -23,7 +23,7 @@ function rebaseBranch {
 	"git rebase master";
 	"git checkout master";
 	"git branch -d branchToRebase";
-	echo `Rebased $branchToRebase into master`;
+	echo "Rebased $branchToRebase into master";
 }
 
 #Kubectl
