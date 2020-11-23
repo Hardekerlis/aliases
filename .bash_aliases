@@ -40,3 +40,5 @@ alias gcm="git checkout master"
 alias gcb="git checkout -b"
 alias rebase='rebaseBranch'
 alias gab="git branch -l"
+alias grb="git branch -d"
+alias grbforce="git branch -D"
