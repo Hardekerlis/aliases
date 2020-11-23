@@ -13,16 +13,17 @@ function rebaseBranch {
 	branchToRebase="$1";
 
 	local rebaseExists=$(git branch --list ${branchToRebase}) # Check if the branch to rebase exists
+	echo $rebaseExists
 	if [[ -z ${rebaseExists} ]]; then
 		echo "The branch ${branchToRebase} doesn't exist";
 		return;
 	fi
 
-	`git checkout ${branchToRebase}`;
-	`git rebase master`;
-	`git checkout master`;
-	`git branch -d ${branchToRebase}`;
-	echo `Rebased ${branchToRebase} into master`;
+	git checkout $branchToRebase;
+	git rebase master;
+	git checkout master;
+	git branch -d branchToRebase;
+	echo `Rebased $branchToRebase into master`;
 }
 
 #Kubectl
