@@ -1,4 +1,4 @@
-Pull this repo at your home folder. To get to the root folder do 'cd ~'
+Pull this repo at your home folder. To get to the root folder do **'cd ~'**
 
 make sure to to add this line at the bottom in your .bashrc file in fedora:
 ```bash
