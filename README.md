@@ -5,7 +5,7 @@ make sure to to add this line at the bottom in your .bashrc file in fedora:
 source "$HOME/aliases/.bash_aliases"
 ```
 
-#Kubectl
+### Kubectl
 ```bash
 alias k="kubectl"
 alias kga="k get all"
@@ -18,7 +18,7 @@ alias kds="kd service"
 
 
 
-#Git
+### Git
 ```bash
 alias gc="git checkout"
 alias gcm="git checkout master"
@@ -27,4 +27,9 @@ alias rebase='rebaseBranch'
 alias gab="git branch -l"
 alias grb="git branch -d"
 alias grbforce="git branch -D"
+```
+
+### Only for development
+```bash
+alias quickpush="git add . && git commit -am 'Not important' && git push"
 ```

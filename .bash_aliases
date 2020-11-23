@@ -42,3 +42,6 @@ alias rebase='rebaseBranch'
 alias gab="git branch -l"
 alias grb="git branch -d"
 alias grbforce="git branch -D"
+
+# Only for development
+alias quickpush="git add . && git commit -am 'Not important' && git push"
