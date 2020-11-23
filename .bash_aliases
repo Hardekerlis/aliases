@@ -19,11 +19,11 @@ function rebaseBranch {
 		return;
 	fi
 
-	"git checkout $branchToRebase";
-	"git rebase master";
-	"git checkout master";
-	"git branch -d branchToRebase";
-	echo "Rebased ${$branchToRebase} into master";
+	git checkout $branchToRebase;
+	git rebase master;
+	git checkout master;
+	git branch -d branchToRebase;
+	echo Rebased $branchToRebase into master;
 }
 
 #Kubectl
