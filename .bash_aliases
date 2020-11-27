@@ -173,10 +173,14 @@ function setProject {
 alias confProj="setProject"
 
 function openProject {
-	if [[ -z $PROJECT_BASE_PATH ]] && [[ -z $PROJECT_FOLDER ]]; then
-		confProj
+	if [[ -z $1 ]]; then
+		if [[ -z $PROJECT_BASE_PATH ]] && [[ -z $PROJECT_FOLDER ]]; then
+			confProj
+		fi
+		cd "$PROJECT_BASE_PATH/$PROJECT_FOLDER";
+	else
+		cd "$PROJECT_BASE_PATH/$1";
 	fi
-	cd "$PROJECT_BASE_PATH/$PROJECT_FOLDER";
 	atom .
 }
 
