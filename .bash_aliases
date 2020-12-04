@@ -82,12 +82,6 @@ function setProject {
 
 	while [[ true ]]; do
 
-		# echo $ACTIVE_PROJ_CONF;
-		# ACTIVE_PROJ_CONF=""
-		# echo "Project folder path: $PROJECT_BASE_PATH"
-		# echo ""
-
-
 		if [[ $ACTIVE_PROJ_CONF == true ]]; then
 			echo "";
 			echo "${cyan}Active configuration: ${reset}";
@@ -140,10 +134,8 @@ function setProject {
 				incr=$(($incr+1));
 
 			done
-			# "$var" -eq "$var"
 			while [[ true ]]; do
 				read -p "Enter the number of the project you want to set: " number
-				# echo "$number" -eq "$number"
 				if [ "$number" -eq "$number" ] 2>/dev/null && [[ $number -lt $((${#folderArr[@]}-1)) || $number == $((${#folderArr[@]}-1)) ]]; then
 
 					folder=${folderArr[number]};
@@ -155,8 +147,6 @@ function setProject {
 					echo "export PROJECT_FOLDER='$folder';" >> "$HOME/aliases/.bash_env"
 
 					wait
-
-
 
 					source "$HOME/.bash_profile";
 					break;

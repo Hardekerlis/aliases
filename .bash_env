@@ -1,2 +1,3 @@
 export PROJECT_BASE_PATH='/home/gustaf/projekt/';
 export ACTIVE_PROJ_CONF='true';
+export PROJECT_FOLDER='schoolable';
