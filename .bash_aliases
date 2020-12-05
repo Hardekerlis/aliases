@@ -38,7 +38,7 @@ function rebaseBranch {
 
 #Kubectl
 alias k="kubectl"
-alias kga="k get all"
+alias kga="clear && k get all"
 alias kgaa="kga --all-namespaces"
 alias kgan="kga -n"
 alias kd="k describe"
