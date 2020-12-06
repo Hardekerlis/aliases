@@ -55,7 +55,6 @@ alias grb="git branch -d"
 alias grbforce="git branch -D"
 
 # cmd line shortcuts
-alias hm="cd ~"
 alias la="ls -A"
 # alias mvDir=""
 
