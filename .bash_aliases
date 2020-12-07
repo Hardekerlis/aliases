@@ -179,3 +179,6 @@ function openProject {
 }
 
 alias openProj="openProject"
+
+# Snapcraft
+alias delOldSnaps="sudo sh $HOME/aliases/remove-old-snaps.sh"
