@@ -56,6 +56,22 @@ alias grbforce="git branch -D"
 
 # cmd line shortcuts
 alias la="ls -A"
+
+function openFiles {
+	# Check if a path is specified
+	if [[ -z ${1} ]]; then
+		# Open current directory
+		xdg-open .
+		return;
+	else
+		# Open specified directory
+		xdg-open $1
+		return;
+	fi
+}
+
+alias fileExplorer="openFiles"
+
 # alias mvDir=""
 
 # Only for development
@@ -179,6 +195,8 @@ function openProject {
 }
 
 alias openProj="openProject"
+
+
 
 # Snapcraft
 alias delOldSnaps="sudo sh $HOME/aliases/remove-old-snaps.sh"
