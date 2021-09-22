@@ -4,6 +4,7 @@ make sure to to add these line at the bottom in your .bashrc file in fedora:
 ```bash
 source "$HOME/aliases/.bash_aliases"
 source "$HOME/aliases/.bash_env"
+source "$HOME/aliases/.bash_ps1"
 ```
 
 ### Kubectl
