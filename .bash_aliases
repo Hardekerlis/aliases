@@ -201,4 +201,4 @@ alias openProj="openProject"
 # Snapcraft
 alias delOldSnaps="sudo sh $HOME/aliases/remove-old-snaps.sh"
 
-alias count-lines="lc count --path=\"./\" --extentions=\"ts,tsx,gql\" --rules=\"ignoreDir(node_modules)|ignoreDir(.next)|ignoreDir(build)|ignoreDir(generated)|ignoreDir(logs)\""
+alias count-lines="lc count --path=\"./\" --extentions=\"ts,tsx,gql,js,sass, css, html\" --rules=\"ignoreDir(node_modules)|ignoreDir(.next)|ignoreDir(build)|ignoreDir(generated)|ignoreDir(logs)|ignoreFile(package-lock.json)|ignoreFile(package.json)|ignoreFile(tsconfig.json)\""
