@@ -54,6 +54,10 @@ alias gab="git branch -l"
 alias grb="git branch -d"
 alias grbforce="git branch -D"
 
+alias use-prod="kubectl config use-context gke_byteboost_europe-north1-c_byteboost-production"
+alias use-dev="kubectl config use-context gke_byteboost_europe-north1-c_byteboost-dev-g"
+alias argo-start="kubectl port-forward service/argocd-server -n argocd 8080:443"
+
 # cmd line shortcuts
 alias la="ls -A"
 
@@ -201,4 +205,4 @@ alias openProj="openProject"
 # Snapcraft
 alias delOldSnaps="sudo sh $HOME/aliases/remove-old-snaps.sh"
 
-alias count-lines="lc count --path=\"./\" --extentions=\"ts,tsx,gql,js,sass, css, html\" --rules=\"ignoreDir(node_modules)|ignoreDir(.next)|ignoreDir(build)|ignoreDir(generated)|ignoreDir(logs)|ignoreDir(.git)|ignoreFile(package-lock.json)|ignoreFile(package.json)|ignoreFile(tsconfig.json)|ignoreFile(.npmrc)|ignoreFile(.dockerignore)|ignoreFile(.prettierrc)|ignoreFile(.prettierignore)|ignoreFile(.gitignore)|ignoreFile(README.md)|ignoreFile(yarn.lock)\" -v"
+alias count-lines="lc count --path=\"./\" --extentions=\"ts,tsx,gql,js,sass, css, html\" --rules=\"ignoreHidden|ignoreDir(node_modules)|ignoreDir(.next)|ignoreDir(build)|ignoreDir(generated)|ignoreDir(logs)|ignoreDir(.git)|ignoreFile(package-lock.json)|ignoreFile(package.json)|ignoreFile(tsconfig.json)|ignoreFile(.npmrc)|ignoreFile(.dockerignore)|ignoreFile(.prettierrc)|ignoreFile(.prettierignore)|ignoreFile(.gitignore)|ignoreFile(README.md)|ignoreFile(yarn.lock)\" -v"
